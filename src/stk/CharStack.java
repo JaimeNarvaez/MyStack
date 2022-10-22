@@ -5,7 +5,6 @@ public class CharStack {
 	int p;
 	int t;
 
-	int r;
 	char[] stk;
 
 	char e;
@@ -23,7 +22,6 @@ public class CharStack {
 		p = 0;
 		t = 0;
 
-		r = 0;
 		stk = new char[v];
 
 		e = ' ';
@@ -50,34 +48,32 @@ public class CharStack {
 
 	public char pop() {
 
-		if (p < t) {
+		if( p != -1){
 
-			if (p > 0) {
-				p = p - 1;
-				r = p;
-				r = r - 1;
+              if (p < t) {
 
-				if (r > 0) {
-					e = stk[p];
-					stk[r] = e;
-					stk[p] = '\u0000';
+                       p = p - 1;
 
-				} else if (r == 0) {
-					e = stk[r];
-					stk[r] = '\u0000';
-				}
-
-			} else if (p == 0) {
-				e = stk[p];
-				p = -1;
-
+			if (p == 0) {
+				
+			e = stk[p];
+			stk[p] = '\u0000';
+                        p = -1;
+                       
+			} else if (p > 0) {
+			e = stk[r];
+			stk[p] = '\u0000';
+                        p = p + 1;
 			}
+
 
 		} else if (p == t) {
 			p = p - 1;
 			e = stk[p];
+                        p = p + 1;
 
 		}
+             } 
 
 		return e;
 
